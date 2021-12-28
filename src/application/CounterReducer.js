@@ -1,5 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+
+export const incrementAsync = amount => dispatch => {
+    setTimeout(() => {
+        dispatch(incrementByAmount(amount))
+    }, 1000)
+}
+
 export const counterReducer = createSlice({
     name: 'counter',
     initialState: {
@@ -19,8 +26,15 @@ export const counterReducer = createSlice({
         incrementByAmount: (state, action) => {
             state.value += action.payload
         }
-    }
+    },
+    extraReducers(builder) {
+        builder.addCase(incrementAsync, (state, action) => {
+            return action.payload
+        })
+    },
 });
+
+
 
 // Selectors 
 export const selectCount = state => state.counter.value;

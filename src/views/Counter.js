@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import {
     decrement,
     increment,
+    incrementAsync,
     incrementByAmount,
     selectCount
 } from '../application/CounterReducer';
@@ -19,7 +20,7 @@ export function Counter() {
         if (isNaN(parseInt(incrementalValue))) {
             setError(true);
         } else {
-            dispatch(incrementByAmount(parseInt(incrementalValue)))
+            dispatch(incrementAsync(parseInt(incrementalValue)))
             setError(false);
         }
 
